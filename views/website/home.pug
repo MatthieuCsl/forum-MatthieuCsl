@@ -1,3 +1,11 @@
 extends ../layout
 block main
-  h1 bondour
+  for post in posts
+      post
+          h2
+              a(href="/posts/" + post.id) #{post.title}
+          ul
+              li
+                  a(href="/userProfile/" + post.user.id) @#{post.user.fullname}
+              li Published #{moment(post.createdAt).fromNow()}
+          p #{post.excerpt}

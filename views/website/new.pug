@@ -1,0 +1,8 @@
+extends ../layout
+block main
+    form(method="post")
+        label(for="title") Title
+        input(id="title", name="title", type="text", placeholder="Title your post, bru")
+        label(for="content") Content
+        textarea(id="content", name="content", placeholder="Your content here, bru...")
+        button(type="submit") Post

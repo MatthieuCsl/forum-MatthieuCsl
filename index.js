@@ -10,23 +10,21 @@ const routes = require('./routes');
 const app = express();
 
 //strategie d'autentification
-passport.use(new LocalStrategy((username, password, callback) => {
+passport.use(new LocalStrategy((email, password, callback) => {
     User
-        .findOne({ username })
+        .findOne({ where: { email } })
         .then((user) => {
             if (!user) {
                 return callback(null, false, {
-                    message: `No user account found for "${username}"`
+                    message: `No user account found for "${email}"`
                 });
             }
-
             bcrypt.compare(password, user.password, (isValid) => {
                 if (isValid) {
                     return callback(null, false, {
                         message: 'Incorrect password'
                     });
                 }
-
                 callback(null, user);
             });
         });
@@ -50,19 +48,24 @@ const COOKIE_SECRET = 'cookie secret';
 app.set('view engine', 'pug');
 // Serve assets from the public folder
 app.use(express.static('public'));
+//date beautify
+app.locals.moment = require('moment');
+app.locals.moment.locale('en');
+
 app.use(cookieParser(COOKIE_SECRET));
 // parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-//initialisation de la session
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(session({
     secret: COOKIE_SECRET,
     resave: false,
     saveUninitialized: false
 }));
+
+//initialisation de la session
+app.use(passport.initialize());
+app.use(passport.session());
 
 // include routes
 app.use(routes);

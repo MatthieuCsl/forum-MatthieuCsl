@@ -1,0 +1,8 @@
+extends ../layout
+block main
+        post
+            h2 #{user.fullname}
+            for post in user.posts
+                p
+                  a(href="/posts/" + post.id) #{post.title}
+                  p Published #{moment(post.createdAt).fromNow()}

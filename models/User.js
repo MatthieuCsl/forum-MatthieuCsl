@@ -6,21 +6,18 @@ function defineUser(database) {
         fullname: {
             type: Sequelize.STRING
         },
-        username: {
+        email: {
             type: Sequelize.STRING
         },
         password: {
-            type: Sequelize.STRING
-        },
-        passwordConf: {
             type: Sequelize.STRING
         },
         role: {
             type: Sequelize.ENUM ('admin', 'user')
         }
     });
-    User.associate = ({ Article, Comment }) => {
-        User.hasMany(Article);
+    User.associate = ({ Post, Comment }) => {
+        User.hasMany(Post);
         User.hasMany(Comment);
     };
     return User;

@@ -6,8 +6,8 @@ function defineComment(database) {
             type: Sequelize.TEXT
         }
     });
-    Comment.associate = ({ Article, User }) => {
-        Comment.belongsTo(Article);
+    Comment.associate = ({ Post, User }) => {
+        Comment.belongsTo(Post);
         Comment.belongsTo(User);
     };
     return Comment;

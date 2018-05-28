@@ -1,12 +1,12 @@
 html
     head
-        title CMS
+        title SOF
         link(rel="stylesheet", href="/css/styles.css")
     body
         block header
             header
                 h1
-                    a(href="/") CMS
+                    a(href="/") StackOverFlow
         main
             block main
         block footer
@@ -15,7 +15,9 @@ html
                     ul
                         if loggedInUser
                             li
-                                a(href="/admin/articles/new") New article
+                                a(href="/new") New post
+                            li
+                                a(href="/userProfile/" + loggedInUser.id) Profile
                             li
                                 a(href="/logout") Log out
                         else
