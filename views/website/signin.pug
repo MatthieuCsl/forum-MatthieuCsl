@@ -1,9 +1,26 @@
-extends ../layout
-block main
-  form(method="post")
-      label(for="email") Email
-      input(id="email", name="username", type="email", placeholder="john.doe@gmail.com")
-      label(for="password") Password
-      input(id="password", name="password", type="password", placeholder="******")
-      button(type="submit") Sign in
-block footer
+html
+    head
+        title Signin-SOF
+        link(rel="stylesheet", href="/css/login.css")
+        link(href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    body
+       main
+         .row
+              form(method="post")
+                .container
+                  .container-title
+                    h2 Welcome back! Please login.
+                  .content
+                    label(for="email") Sign in with your e-mail address
+                    input(id="email", name="username", type="email", placeholder="clark@dashboard.com")
+                    label(for="password") Password
+                    input(id="password", name="password", type="password", placeholder="******")
+                    button(type="submit") Sign in to dashboard
+                    a.log-social Login via social networks
+                    div
+              .more
+                .signup
+                  a Don't have an account yet? Get Started
+                .newpass
+                  a Forgot Password?
