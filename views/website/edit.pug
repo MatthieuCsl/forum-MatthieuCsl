@@ -5,4 +5,10 @@ block main
         input(id="title", name="title", type="text", placeholder="Reedit this title my bru", value=post.title)
         label(for="content") Content
         textarea(id="content", name="content", placeholder="Reedit this content my bru...") #{post.content}
-        button(type="submit") Post
+        div
+          label
+            input(type='checkbox', id="status", name="status", value="solved")
+            |  Solved
+            input(type='checkbox', id="status", name="status", value="unsolved")
+            |  Unsolved
+        button(type="submit") Valid modification

@@ -1,0 +1,88 @@
+*{
+	box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  align-items: center;
+}
+
+ul {
+  display: inline-flex;
+  height: 45px;
+  width: 100%;
+  padding-top: 8px;
+}
+
+li {
+  img {
+    position: relative;
+    height: 45px;
+    margin: -11px -6px -6px -39px;
+  }
+  div {
+    padding-top: 6%;
+    width: 100%;
+    padding-left: 24px;
+  }
+  input {
+    background-color: #f8fafc;
+    border: 2px solid #ebeef2;
+    width: 100%;
+    color: black;
+    border-radius: 3px;
+    background: url(/images/research.png) no-repeat scroll 230px 7px;
+    background-size: 20px;
+    padding: 8px;
+    margin-top: -18px;
+  }
+  list-style-type: none;
+  display: block;
+  padding-top: 7px;
+  margin-left: 35px;
+}
+
+li:nth-child(2)::after {
+   content:'arrow_drop_down';
+   font-family: Material Icons;
+   font-size: 26px;
+   color: #9aa0a7;
+   display: block;
+   margin-top: -22px;
+   margin-left: 36px;
+}
+
+li:nth-child(5) {
+   margin-left: auto;
+   display: block;
+   position: relative;
+   min-width: 290px;
+}
+
+li:nth-child(6) {
+  padding-top: 0px;
+  display: block;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: #9aa0a7;
+}
+
+.material-icons {
+  font-size: 39px !important;
+  color: #9aa0a7;
+}
+
+.material-icons::after {
+  content:'arrow_drop_down';
+  font-family: Material Icons;
+  font-size: 26px;
+  color: #9aa0a7;
+  display: block;
+  margin-top: -33px;
+  margin-left: 35px;
+}

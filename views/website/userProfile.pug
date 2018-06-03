@@ -2,6 +2,8 @@ extends ../layout
 block main
         post
             h2 #{user.fullname}
+            if loggedInUser && loggedInUser.role == "admin"
+                a(href="/admin/userProfile/" + user.id + "/edit/") Edit user profile
             for post in user.posts
                 p
                   a(href="/posts/" + post.id) #{post.title}

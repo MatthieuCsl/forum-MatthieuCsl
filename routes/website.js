@@ -65,11 +65,26 @@ router.post('/new', (req, res) => {
 //detail d'un poste via titre du post
 router.get('/posts/:postId', (req, res) => {
     Post
-        .findById(req.params.postId, { include: [User, Comment] })
+        .findById(req.params.postId, { include: [User, {model: Comment, include: [User]} ] })
         .then((post) => {
             res.render('website/post', { post, loggedInUser: req.user });
         });
 });
+
+//gestion des commentaires
+router.post('/api/posts/:postId', (req, res) => {
+    const { content } = req.body;
+    Comment
+        .create({
+            content,
+            userId: req.user.id,
+            postId: req.params.postId
+        })
+        .then(() => {
+            res.redirect(`/posts/${req.params.postId}`);
+        });
+});
+
 //edition d'un post
 router.get('/posts/:postId/edit', (req, res) => {
     Post
@@ -80,9 +95,9 @@ router.get('/posts/:postId/edit', (req, res) => {
 });
 
 router.post('/posts/:postId/edit', (req, res) => {
-    const { title, content } = req.body;
+    const { title, content, status } = req.body;
     Post
-        .update({ title, content }, { where: { id: req.params.postId } })
+        .update({ title, content, status }, { where: { id: req.params.postId } })
         .then(() => {
             res.redirect(`/posts/${req.params.postId}`);
         });

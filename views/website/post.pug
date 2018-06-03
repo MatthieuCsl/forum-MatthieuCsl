@@ -1,23 +1,23 @@
 extends ../layout
 block main
-    post
         h2 #{post.title}
+        p #{post.status}
         ul
             li #{post.content}
             li
               a(href="/userProfile/" + post.user.id) @#{post.user.fullname}
             li Published #{moment(post.createdAt).fromNow()}
-        if loggedInUser
+        if loggedInUser.id == post.user.id
             a(href="/posts/" + post.id + "/edit/") Edit
-    for comment in post.comments
-        post
-            a(href="/userProfile/" + comment.user.id) @#{comment.user.fullname}
-            p #{comment.content}
-    if loggedInUser
-        form(method="post")
-            label(for="content") Comment
-            textarea(id="content", name="content", placeholder="Thanks for sharing...")
-            button(type="submit") Comment
-    else
-      
-      a(href="/signin") Sign in to comment
+        for comment in post.comments
+            div
+                a(href="/userProfile/" + comment.user.id) @#{comment.user.fullname}
+                p #{comment.content}
+        if loggedInUser
+            form(method="post" action="/api/posts/" + post.id)
+                label(for="content") Comment
+                textarea(id="content", name="content", placeholder="Thanks for sharing...")
+                button(type="submit") Comment
+        else
+          
+          a(href="/signin") Sign in to comment

@@ -1,11 +1,22 @@
 extends ../layout
 block main
-  for post in posts
-      post
-          h2
-              a(href="/posts/" + post.id) #{post.title}
-          ul
-              li
-                  a(href="/userProfile/" + post.user.id) @#{post.user.fullname}
-              li Published #{moment(post.createdAt).fromNow()}
-          p #{post.excerpt}
+    link(rel="stylesheet", href="/css/home.css")
+    h1 Featured Posts
+    .container
+      .content1
+        lable Menu
+          ul 
+            li Featured Posts
+            li Recommended
+            li Unresolved
+            li Resolved
+      .content2
+        for post in posts
+            .card
+                h2
+                    a(href="/posts/" + post.id) #{post.title}
+                ul
+                    li
+                        a(href="/userProfile/" + post.user.id) Writed by @#{post.user.fullname}
+                    li Published #{moment(post.createdAt).fromNow()}
+                p #{post.excerpt}

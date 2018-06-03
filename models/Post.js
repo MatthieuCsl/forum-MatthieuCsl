@@ -7,6 +7,9 @@ function definePost(database) {
         },
         content: {
             type: Sequelize.TEXT
+        },
+        status: {
+            type: Sequelize.ENUM ('solved', 'unsolved')
         }
     });
     Post.associate = ({ User, Comment }) => {

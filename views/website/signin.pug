@@ -18,9 +18,11 @@ html
                     input(id="password", name="password", type="password", placeholder="******")
                     button(type="submit") Sign in to dashboard
                     a.log-social Login via social networks
-                    div
+                    .social-icone
+                      img(src="./../images/twitter.png")
+                      img(src="./../images/facebook.png")
+                      img(src="./../images/pinterest.png")
+                      img(src="./../images/dribble.png")
               .more
-                .signup
-                  a Don't have an account yet? Get Started
-                .newpass
-                  a Forgot Password?
+                  a.signup(href="/signup") Don't have an account yet? Get Started
+                  a.newpass(href="#") Forgot Password?

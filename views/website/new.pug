@@ -1,8 +1,49 @@
-extends ../layout
-block main
-    form(method="post")
-        label(for="title") Title
-        input(id="title", name="title", type="text", placeholder="Title your post, bru")
-        label(for="content") Content
-        textarea(id="content", name="content", placeholder="Your content here, bru...")
-        button(type="submit") Post
+html
+    head
+        title new product-SOF
+        link(rel="stylesheet", href="/css/newpost.css")
+        link(href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+        script(src='js/tinymce/tinymce.min.js')
+        script.
+          tinymce.init({ selector:'textarea', height:'20%' });
+    body
+        nav
+          ul
+            if loggedInUser
+                li
+                  img(src="./../images/logo.png")
+                li
+                  a(href="/") Home
+                li 
+                  a(href="/new") New post
+                li 
+                  a(href="/userProfile/" + loggedInUser.id) Your profile
+                li 
+                  div
+                    input(type="text" placeholder="Search.." name="search")
+                li 
+                  i.material-icons
+                    | account_circle
+                  a(href="/Logout")
+            else
+                
+                li
+                    img(src="./../images/logo.png")
+                li
+                    a(href="/") Home
+                li
+                    a(href="/signin") Sign in
+                li
+                    a(href="/signup") Sign up
+        main
+          div.title-content
+            h1.title New Topic
+            button.addprod(type="submit") + Add new Post
+          .container
+            form.content-form(method="post")
+              label.block(for="title") Product Name
+              input.block(id="title", name="title", type="text", placeholder="Title your post,...")
+              label.block(for="content") Product description
+              textarea.block(id="content", name="content", placeholder="Your content here,...")
+              button.btn-post(type="submit") Post

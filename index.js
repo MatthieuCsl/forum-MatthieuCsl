@@ -19,8 +19,8 @@ passport.use(new LocalStrategy((email, password, callback) => {
                     message: `No user account found for "${email}"`
                 });
             }
-            bcrypt.compare(password, user.password, (isValid) => {
-                if (isValid) {
+            bcrypt.compare(password, user.password, (isValid, result) => {
+                if (isValid || !result) {
                     return callback(null, false, {
                         message: 'Incorrect password'
                     });
